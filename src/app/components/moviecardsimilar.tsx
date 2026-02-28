@@ -1,21 +1,21 @@
 import { Movie } from "@/lib/types";
 import { Star } from "lucide-react";
 
-export default function MovieCard(props: Movie) {
+export default function MovieCardSimilar(props: Movie) {
   const { poster_path, vote_average, title, overview } = props;
-  const shortTitle = title.length > 35 ? title.slice(0, 35) + "..." : title;
+  const shortTitle = title.length > 15 ? title.slice(0, 15) + "..." : title;
 
   const imageUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
 
   return (
-    <div className="w-39.5 h-77.5 sm:w-50 md:w-57.5 md:h-110">
+    <div className="w-33 h-73 sm:w-45 md:w-52 md:h-100">
       <div className="h-full w-full">
         <img
-          className="rounded-t-lg w-[157.5px] h-[233px] md:w-[230px] md:h-[340px] overflow-hidden"
+          className="rounded-t-lg w-[132.5px] h-[210px] md:w-[202px] md:h-[310px] overflow-hidden"
           src={imageUrl}
           alt="movie poster"
         />
-        <div className="bg-[#F4F4F5] rounded-b-lg w-[157.5px] h-[65px] md:w-[230px] md:h-[90px] relative p-2 dark:bg-gray-600">
+        <div className="bg-[#F4F4F5] rounded-b-lg w-[132.5px] h-[60px] md:w-[202px] md:h-[80px] relative p-2 dark:bg-gray-600">
           <div className="flex relative">
             <span>
               <Star

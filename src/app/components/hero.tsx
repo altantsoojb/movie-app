@@ -20,7 +20,7 @@ export function Hero({ nowplaying }: { nowplaying: Movie[] }) {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true }),
   );
-  const baseImgUrl = "https://image.tmdb.org/t/p/original";
+  const baseImgUrl = "http://image.tmdb.org/t/p/w1920/";
   return (
     <div className="relative mx-auto">
       <Carousel

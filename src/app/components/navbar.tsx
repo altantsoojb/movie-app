@@ -19,16 +19,19 @@ export default function Header() {
 
   return (
     <div className="flex justify-between items-center p-3 h-14.75 bg-white dark:bg-gray-900 transition-colors duration-300 text-gray-900 dark:text-gray-100">
-      <Link href="./">
-        <div className="text-[#4338CA] flex h-5 justify-between w-23">
-          <Film />
-          <p className="pt-0.5 font-inter font-bold italic text-5 leading-5 tracking-[0.02em] align-middle">
-            Movie Z
-          </p>
-        </div>
-      </Link>
+      <div className="pl-5">
+        <Link href="./">
+          <div className="text-[#4338CA] flex h-5 justify-between w-23 ">
+            <Film />
+            <p className="pt-0.5 font-inter font-bold italic text-5 leading-5 tracking-[0.02em] align-middle">
+              Movie Z
+            </p>
+          </div>
+        </Link>
+      </div>
+
       <div className="hidden md:flex w-122 justify-between items-center">
-        <DropdownMenuButton getgenre={[]} />
+        <DropdownMenuButton genres={[]} />
         <div className="w-95 h-9">
           <MovieSearchDropdown />
         </div>

@@ -13,21 +13,14 @@ import { getGenreMovies } from "@/lib/api";
 import { Genre } from "@/lib/types";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import { GenreButton } from "./genre";
 
 type DropdownProps = {
   genres: Genre[];
 };
 
 export function DropdownMenuButton({ genres }: DropdownProps) {
-  const [getGenres, setgetGenres] = useState<Genre[]>([]);
 
-  useEffect(() => {
-    const res = async () => {
-      const data = await getGenreMovies();
-      setgetGenres(data);
-    };
-    res();
-  }, []);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -51,16 +44,8 @@ export function DropdownMenuButton({ genres }: DropdownProps) {
             <h2 className="text-sm font-semibold mb-3 text-gray-500 uppercase">
               Genres
             </h2>
-            <div className="flex flex-wrap gap-2 h-40 w-135">
-              {getGenres?.map((genre) => (
-                <button
-                  key={genre.id}
-                  className="flex items-center gap-1 px-3 py-1 h-5 text-xs font-medium rounded-full border border-gray-300 hover:bg-gray-100 transition-colors"
-                >
-                  {genre.name}
-                  <ChevronRight size={12} className="text-gray-400" />
-                </button>
-              ))}
+            <div className="">
+              <GenreButton genres={[]} />
             </div>
           </div>
         </div>

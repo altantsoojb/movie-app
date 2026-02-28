@@ -16,7 +16,7 @@ export default async function Home() {
   const { results: nowplaying } = await getNowPlaying();
 
   return (
-    <div className="mx-auto">
+    <div className="">
       <Hero nowplaying={nowplaying} />
       <Upcoming movies={upcoming} />
       <Popular movies={popular} />

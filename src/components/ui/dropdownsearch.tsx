@@ -6,6 +6,7 @@ import { Movie } from "@/lib/types";
 import { Search } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function MovieSearch() {
   const [searchValue, setSearchValue] = useState("");
@@ -13,11 +14,16 @@ export default function MovieSearch() {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
 
+  const onCloseDropdown = () => {
+    setOpen(false);
+  };
+
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!searchValue.trim()) {
       setResults([]);
+      setOpen(false);
       return;
     }
 
@@ -58,7 +64,7 @@ export default function MovieSearch() {
       <input
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
-        onFocus={() => setOpen(true)}
+        onFocus={() => setOpen(false)}
         placeholder="Search movies..."
         className="w-full h-9 pl-10 pr-4 rounded-xl border focus:outline-none focus:ring-2 focus:ring-indigo-400"
       />
@@ -68,8 +74,8 @@ export default function MovieSearch() {
         <div className="absolute top-full mt-2 w-full bg-white rounded-xl shadow-xl max-h-105 overflow-y-auto z-50 border-[#71717A] border  dark:bg-[#09090B]">
           {/* Loading */}
           {loading && (
-            <div className="p-6 text-center text-gray-500">
-              Searching movies...
+            <div className="p-6 flex justify-center text-gray-500">
+              <Spinner className="size-10" color="#E4E4E7" />
             </div>
           )}
 
@@ -83,12 +89,9 @@ export default function MovieSearch() {
           {/* Results */}
           {!loading &&
             results.slice(0, 3).map((movie) => (
-              <div key={movie.id}>
-                <Link href={`/${movie.id}`} key={movie.id}>
-                  <div
-                    key={movie.id}
-                    className="flex gap-4 p-4 hover:bg-gray-50 cursor-pointer dark:hover:bg-gray-700"
-                  >
+              <div key={movie.id} onClick={onCloseDropdown}>
+                <Link href={`/${movie.id}`}>
+                  <div className="flex gap-4 p-4 hover:bg-gray-50 cursor-pointer dark:hover:bg-gray-700">
                     <img
                       src={
                         movie.poster_path
@@ -108,17 +111,19 @@ export default function MovieSearch() {
                     </div>
                   </div>
                 </Link>
-                <div>
-                  <Separator />
-                </div>
+
+                <Separator />
               </div>
             ))}
-          <div className="bg-gray-100 h-8">
+          <div className="bg-gray-100 h-8 dark:bg-gray-900">
             <Link
-              href="./searchpage"
-              className="flex justify-end font-semibold text-sm mr-5 pt-1"
+              href={`/searchpage?q=${searchValue}`}
+              className="flex font-semibold text-sm pl-4 pt-1"
+              onClick={onCloseDropdown}
             >
-              {!loading && results?.length > 0 && "More movies results →"}
+              {!loading &&
+                results?.length > 0 &&
+                `See all results for "${searchValue}"`}
             </Link>
           </div>
         </div>

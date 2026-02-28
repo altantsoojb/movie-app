@@ -14,8 +14,8 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="">
-      <div className="sm:w-360 w-full flex sm:flex-row flex-col justify-between m-auto sm:h-70 h-77 py-10 sm:px-20 px-5 bg-indigo-700 text-[#FAFAFA] text-sm leading-5">
+    <footer className="pt-12">
+      <div className=" w-full flex sm:flex-row flex-col justify-between m-auto sm:h-70 h-77 py-10 sm:px-20 px-5 bg-indigo-700 text-[#FAFAFA] text-sm leading-5">
         <div>
           <Link
             className="flex gap-2 italic font-bold items-center mb-3"
