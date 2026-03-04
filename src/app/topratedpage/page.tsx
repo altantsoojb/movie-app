@@ -58,3 +58,4 @@ const Page = async ({ searchParams }: SearchPageProps) => {
     </div>
   );
 };
+export default Page;
